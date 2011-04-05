@@ -1,0 +1,19 @@
+id  : CleanupIndexArchive
+key : cleanupindexarchive
+name: Cleanup Index Archive
+version: 0.1
+author_name: Alfasado Inc.
+author_link: http://alfasado.net/
+l10n_class: CleanupIndexArchive::L10N
+description: '<__trans phrase="Cleanup Renamed Index Archive File(or type is Do Not Publish).">'
+config_settings:
+    CleanupIndexArchive:
+        default: 1
+    CleanupIndexArchiveAtRebuild:
+        default: 0
+callbacks:
+    cms_post_save.template: $cleanupindexarchive::CleanupIndexArchive::Plugin::_cms_post_save_template
+    MT::App::CMS::template_param.edit_template:
+        handler: $cleanupindexarchive::CleanupIndexArchive::Plugin::_edit_template
+        priority: 10
+    BuildPage: $cleanupindexarchive::CleanupIndexArchive::Plugin::_build_page
